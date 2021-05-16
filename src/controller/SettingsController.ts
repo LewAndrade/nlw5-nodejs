@@ -2,17 +2,17 @@ import { Request, Response } from "express";
 import { SettingsService } from "../services/SettingsService";
 
 class SettingsController {
-  async create(req: Request, res: Response) {
-    const { chat, username } = req.body;
+  async create(request: Request, response: Response): Promise<Response> {
+    const { chat, username } = request.body;
 
     const settingsService = new SettingsService();
 
     try {
       const settings = await settingsService.create({ chat, username });
 
-      return res.json(settings);
+      return response.json(settings);
     } catch (e) {
-      return res.status(400).json({ message: e.message });
+      return response.status(400).json({ message: e.message });
     }
   }
 }
