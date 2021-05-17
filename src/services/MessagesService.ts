@@ -14,6 +14,7 @@ class MessagesService {
   constructor() {
     this.messagesRepository = getCustomRepository(MessagesRepository);
   }
+
   async create({ admin_id, text, user_id }: IMessageCreate) {
     const message = this.messagesRepository.create({
       admin_id,
